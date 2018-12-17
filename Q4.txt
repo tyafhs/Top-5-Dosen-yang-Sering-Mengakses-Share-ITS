@@ -1,0 +1,11 @@
+import pyodbc 
+conn = pyodbc.connect("Driver={SQL Server};"
+                      "Server=FATHIYA;"
+                      "Database=db_final;"
+                      "Trusted_Connection=yes;")
+
+cursor = conn.cursor()
+sql = cursor.execute("SELECT TOP (5) Dosen, COUNT(Dosen) as JumlahAkses FROM dbo.Dosen GROUP BY Dosen ORDER BY JumlahAkses DESC")
+result = sql.fetchall() 
+for row in result:
+     print(row)
